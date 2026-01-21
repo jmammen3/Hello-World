@@ -33,8 +33,17 @@
         }
         p {
             font-size: 1.2em;
-            margin: 0;
+            margin: 0 0 20px 0;
             opacity: 0.9;
+        }
+        .challenge {
+            font-size: 1em;
+            font-style: italic;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            border-left: 5px solid #fff;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -46,6 +55,28 @@
     <div class="container">
         <h1>Joshua Mammen</h1>
         <p>Hello, World! I'm ready to vibe code.</p>
+        <div class="challenge" id="randomChallenge">Loading challenge...</div>
     </div>
+    <script>
+        const challenges = [
+            "Do 10 jumping jacks to get your blood flowing!",
+            "Write a haiku about coding in 5 minutes.",
+            "Learn a new keyboard shortcut in VS Code.",
+            "Solve a LeetCode easy problem.",
+            "Stretch your arms and do a 30-second plank.",
+            "Debug a friend's code (or your own old code).",
+            "Try coding with your non-dominant hand for a minute.",
+            "Implement a simple algorithm from scratch.",
+            "Read one page from a programming book.",
+            "Refactor a piece of code to be more readable."
+        ];
+
+        function getRandomChallenge() {
+            const randomIndex = Math.floor(Math.random() * challenges.length);
+            return challenges[randomIndex];
+        }
+
+        document.getElementById('randomChallenge').innerText = getRandomChallenge();
+    </script>
 </body>
 </html>
