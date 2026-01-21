@@ -36,18 +36,6 @@
             margin: 0 0 20px 0;
             opacity: 0.9;
         }
-        .code-container {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            text-align: left;
-            white-space: pre-wrap;
-            min-height: 60px;
-            border-left: 5px solid #fff;
-        }
         canvas {
             margin-top: 20px;
             border-radius: 10px;
@@ -64,59 +52,26 @@
     <div class="container">
         <h1>Joshua Mammen</h1>
         <p>Hello, World! I'm ready to vibe code.</p>
-        <div class="code-container" id="codeSnippet"></div>
         <canvas id="flappyBird" width="400" height="300"></canvas>
     </div>
     <script>
-        const codeSnippets = [
-            `function helloWorld() {
-    console.log("Hello, World!");
-    return "Vibe code!";
-}`,
-            `const vibe = () => {
-    console.log("Coding is fun!");
-};`,
-            `print("Hello from Python!")
-# Let's vibe some code`,
-            `public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}`
-        ];
-
-        const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        const codeElement = document.getElementById('codeSnippet');
-        let index = 0;
-
-        function typeWriter() {
-            if (index < randomSnippet.length) {
-                codeElement.innerHTML += randomSnippet.charAt(index);
-                index++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-
-        // Start typing after a short delay
-        setTimeout(typeWriter, 1000);
-
         // Flappy Bird Game
         const canvas = document.getElementById('flappyBird');
         const ctx = canvas.getContext('2d');
         let bird = { x: 50, y: 150, velocity: 0 };
-        const gravity = 0.6;
-        const jumpStrength = -12;
+        const gravity = 0.4;
+        const jumpStrength = -10;
         let pipes = [];
         let score = 0;
         let gameRunning = true;
         const pipeWidth = 50;
-        const pipeGap = 100;
-        const pipeSpeed = 2;
+        const pipeGap = 120;
+        const pipeSpeed = 1.5;
 
         function drawBird() {
             ctx.fillStyle = '#FFD700';
             ctx.beginPath();
-            ctx.arc(bird.x, bird.y, 15, 0, Math.PI * 2);
+            ctx.arc(bird.x, bird.y, 12, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#000';
             ctx.beginPath();
@@ -152,8 +107,8 @@
                 gameRunning = false;
             }
             pipes.forEach(pipe => {
-                if (bird.x + 15 > pipe.x && bird.x - 15 < pipe.x + pipeWidth) {
-                    if (bird.y - 15 < pipe.topHeight || bird.y + 15 > canvas.height - pipe.bottomHeight) {
+                if (bird.x + 12 > pipe.x && bird.x - 12 < pipe.x + pipeWidth) {
+                    if (bird.y - 12 < pipe.topHeight || bird.y + 12 > canvas.height - pipe.bottomHeight) {
                         gameRunning = false;
                     }
                 }
